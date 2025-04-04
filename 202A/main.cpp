@@ -9,10 +9,10 @@ std::vector<std::string> palindrome_subsquence(std::string s)
 {
     std::vector<std::string> posibilites;
     std::set<char> unique_char;
-    std::cout << s[0] << std::endl;
+    int len = s.length();
 
     // check for unique chars
-    for (int i = 0; i < s.length(); i++)
+    for (int i = 0; i < len; i++)
     {
         unique_char.insert(s[i]);
     }
@@ -27,9 +27,9 @@ std::vector<std::string> palindrome_subsquence(std::string s)
     
     std::string posible_palindrome;
     // check for palindromes :O
-    for (int i = 0; i < s.length(); i++)
+    for (int i = 0; i < len; i++)
     {
-        for (int j = i + 1; j < s.length(); j++)
+        for (int j = i + 1; j < len; j++)
         {
             if (i > j)
             {
@@ -39,6 +39,7 @@ std::vector<std::string> palindrome_subsquence(std::string s)
             std::reverse(placeholder.begin(), placeholder.end());
             if (placeholder == posible_palindrome)
             {
+                std::cout << posible_palindrome;
                 posibilites.push_back(posible_palindrome);
             }
         }
