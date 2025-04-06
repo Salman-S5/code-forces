@@ -4,57 +4,44 @@
 #include <set>
 #include <algorithm>
 
-
-std::vector<std::string> palindrome_subsquence(std::string s)
+bool is_palindrome(const std::string& str)
 {
-    std::vector<std::string> posibilites;
-    std::set<char> unique_char;
-    int len = s.length();
+    std::string reversed = str;
+    std::reverse(reversed.begin(), reversed.end());
+    return str == reversed;
+}
 
-    // check for unique chars
-    for (int i = 0; i < len; i++)
-    {
-        unique_char.insert(s[i]);
-    }
+std::set<std::string> all_palindromes_subsequences(const std::string& s)
+{
+    std::set<std::string> results;
+    int l = s.length();
 
-    // put unique chars into possiblites
-    int temp = 0;
-    for (char st : unique_char)
+    for (int mask = 1; mask < (1 << l); mask++)
     {
-        posibilites.push_back(std::string(1, st));
-        temp++;
-    }
-    
-    std::string posible_palindrome;
-    // check for palindromes :O
-    for (int i = 0; i < len; i++)
-    {
-        for (int j = i + 1; j < len; j++)
+        std::string subseq = "";
+
+        for (int i = 0; i < l; i++)
         {
-            if (i > j)
-            {
-                posible_palindrome = std::string(1, s[i]) + std::string(1, s[j]);
+            if (mask &(1 << i)) {
+                subseq += s[i];
             }
-            std::string placeholder = posible_palindrome;
-            std::reverse(placeholder.begin(), placeholder.end());
-            if (placeholder == posible_palindrome)
-            {
-                std::cout << posible_palindrome;
-                posibilites.push_back(posible_palindrome);
-            }
+        }
+
+        if (is_palindrome(subseq)) {
+            results.insert(subseq);
         }
     }
 
-    return posibilites;
+    return results;
 }
 
 int main()
 {
     std::string s;
     std::cin >> s;
-    std::cout << "entered string: " << s << std::endl;
-    
-    palindrome_subsquence(s);
+    std::set<std::string> palindromes = all_palindromes_subsequences(s);
+
+    std::cout << *palindromes.rbegin();
 
     return 0;
 }
