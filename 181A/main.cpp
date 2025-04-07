@@ -18,12 +18,5 @@ int main()
 
     std::vector<std::tuple<int, int>> robberies;
 
-    for (int i = 1; i < r+1; i++)
-    {
-        for (int j = 1; j < c+1; j++)
-        {
-            continue;
-        }
-    }
     return 0;
 }
