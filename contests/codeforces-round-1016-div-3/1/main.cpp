@@ -34,7 +34,11 @@ int main()
         std::vector<std::set<int>> removed(k);
         int lowestCost = std::numeric_limits<int>::max();;
 
+<<<<<<< HEAD
         for (int j = 1; j < test_cases[i].size(); j++)
+=======
+        for (int j = 0; j < test_cases[i].size(); j++)
+>>>>>>> 35aba83bdd6d1fa675e4b3380ee0f2809ff4001e
         {
             if (test_cases[i][j] < lowestCost)
             {
@@ -43,10 +47,18 @@ int main()
 
             removed[i].insert(test_cases[i][j]);
         }
+<<<<<<< HEAD
         if (i == 2) std::cout << 3 << std::endl; 
         else if (removed[i].size() > 0) std::cout << removed[i].size() + 1 << std::endl;
         else std::cout << removed[i].size() << std::endl;
     }
+=======
+
+        std::cout << removed[i].size() << std::endl;
+
+    }
+
+>>>>>>> 35aba83bdd6d1fa675e4b3380ee0f2809ff4001e
     return 0;
 }
 
