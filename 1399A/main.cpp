@@ -2,6 +2,7 @@
 #include <sstream>
 #include <string>
 #include <iostream>
+#include <algorithm>
 
 int main()
 {
@@ -24,36 +25,33 @@ int main()
         int num;
         while (ss >> num) a.push_back(num);
 
-        int len = a.size();
-        for (int i = 0; i < len; i++)
+        std::sort(a.begin(), a.end());
+
+        bool changed = true;
+        
+        while ((a.size() > 1) && changed)
         {
-            for (int j = i + 1; j < len; j++)
+            changed = false;
+            for (size_t i = 0; i < a.size() - 1; i++)
             {
-                if (len == 0) std::cout << "YES" << std::endl;
-                else if (i == j) continue;
-                else if (a[i] == a[j])
-                {
+                if (a[i] == a[i+1]) {
                     a.erase(a.begin() + i);
-                    len = a.size();
+                    changed = true;
                     break;
                 }
-                else if (std::abs(a[i] - a[j]) <= 1) 
-                {
-                    if (a[i] < a[j]) a.erase(a.begin() + i);
-                    else a.erase(a.begin() + j);
-                    len = a.size();
+                else if (std::abs(a[i]-a[i+1]) <= 1) {
+                    if (a[i] < a[i+1]) a.erase(a.begin() + i);
+                    else a.erase(a.begin() + (i+1));
+                    changed = true;
                     break;
                 }
-                else std::cout << "NO" << std::endl;
             }
+
         }
 
+        if (a.size() == 1) std::cout << "Yes" << std::endl;
+        else std::cout << "No" << std::endl;
     }
-
-
-
-
-
 
     return 0;
 }
