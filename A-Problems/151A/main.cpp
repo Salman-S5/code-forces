@@ -15,5 +15,4 @@ int main()
     int tt = static_cast<double>(std::min({ttwd, ttwl, ttws})) / n; // total toasts :)
 
     std::cout << tt;
-
 }
