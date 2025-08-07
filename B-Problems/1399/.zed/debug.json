@@ -1,0 +1,18 @@
+// Project-local debug tasks
+//
+// For more documentation on how to configure debug tasks,
+// see: https://zed.dev/docs/debugger
+[
+    {
+      "configurations": [
+        {
+          "type": "gdb",
+          "request": "launch",
+          "name": "Launch GDB",
+          "program": "${workspaceFolder}/my_program",
+          "args": [],
+          "cwd": "${workspaceFolder}"
+        }
+      ]
+    }
+]
